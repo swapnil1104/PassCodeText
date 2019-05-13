@@ -134,7 +134,7 @@ public class OtpEditText extends AppCompatEditText {
             mCharSize = (availableWidth - (mSpace * (mNumChars - 1))) / mNumChars;
         }
 
-        mLineSpacing = (float) (getHeight() * .7);
+        mLineSpacing = (float) (getHeight() * .6);
 
         int startX = getPaddingLeft();
         int bottom = getHeight() - getPaddingBottom();

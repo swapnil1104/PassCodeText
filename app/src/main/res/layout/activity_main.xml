@@ -21,9 +21,11 @@
         android:clickable="false"
         android:cursorVisible="false"
         android:digits="0123456789"
+        android:padding="32dp"
         android:inputType="number"
+        app:oev_primary_color="@android:color/holo_blue_dark"
+        app:oev_secondary_color="@android:color/holo_orange_light"
         android:maxLength="6"
-        android:padding="8dp"
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent" />
 
