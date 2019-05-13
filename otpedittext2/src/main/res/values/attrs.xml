@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OtpEditText">
+        <attr name="oev_length" format="integer"/>
+        <attr name="oev_primary_color" format="color" />
+        <attr name="oev_secondary_color" format="color" />
+        <attr name="oev_text_color" format="color" />
+    </declare-styleable>
+
+
+
+</resources>

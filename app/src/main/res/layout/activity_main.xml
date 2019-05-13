@@ -15,4 +15,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.broooapps.otpedittext2.OtpEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:digits="0123456789"
+        android:inputType="number"
+        android:maxLength="6"
+        android:padding="8dp"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
