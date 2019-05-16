@@ -28,7 +28,7 @@ Step 2. Add the dependency
 
 ```
 dependencies {
-    implementation 'com.github.swapnil1104:OtpEditText:0.0.1'
+    implementation 'com.github.swapnil1104:OtpEditText:{current_lib_ver}'
 }
 ```
 Step 3. Add OtpEditText to your layout file
