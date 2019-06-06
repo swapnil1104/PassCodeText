@@ -7,6 +7,7 @@ With stunning animation, and high customizability.
 
 ![Demo1](images/demo.gif)
 ![Demo with other colors](images/demo1.gif)
+![Demo with underline](images/demo2.gif)
 
 ## Packed with features
 - Add custom character limit.
