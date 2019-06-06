@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">OtpEditText</string>
+
+    <string name="style_square">square_box</string>
+    <string name="style_rounded">rounded_box</string>
+    <string name="style_underline">underline</string>
+    <string name="style_rounded_underline">rounded_underline</string>
 </resources>
