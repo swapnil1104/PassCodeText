@@ -6,8 +6,6 @@
 A customised EditText view serving the purpose of taking numeric **One Time Password** from a user. 
 With stunning animation, and high customizability.
 
-![Demo1](images/demo.gif)
-![Demo with other colors](images/demo1.gif)
 ![Demo with underline](images/demo2.gif)
 
 ## Packed with features
