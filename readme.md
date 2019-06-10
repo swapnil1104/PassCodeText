@@ -1,4 +1,4 @@
-# OtpEditText
+# PassCodeText
 
 [![](https://jitpack.io/v/swapnil1104/OtpEditText.svg)](https://jitpack.io/#swapnil1104/OtpEditText)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-OtpEditText-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7666)
