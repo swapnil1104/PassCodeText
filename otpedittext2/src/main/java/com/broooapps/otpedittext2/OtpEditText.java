@@ -135,16 +135,16 @@ public class OtpEditText extends AppCompatEditText {
                 default:
                     mStrokePaint = new Paint(getPaint());
                     mStrokePaint.setStrokeWidth(4);
-                    mStrokePaint.setStyle(Paint.Style.STROKE);
+                    mStrokePaint.setStyle(Paint.Style.FILL);
 
-                    mBoxStyle = ROUNDED_BOX;
+                    mBoxStyle = UNDERLINE;
             }
         } else {
             mStrokePaint = new Paint(getPaint());
             mStrokePaint.setStrokeWidth(4);
-            mStrokePaint.setStyle(Paint.Style.STROKE);
+            mStrokePaint.setStyle(Paint.Style.FILL);
 
-            mBoxStyle = ROUNDED_BOX;
+            mBoxStyle = UNDERLINE;
         }
 
         a.recycle();
