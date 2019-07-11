@@ -1,12 +1,12 @@
-# OtpEditText
+# PassCodeText
 
 [![](https://jitpack.io/v/swapnil1104/OtpEditText.svg)](https://jitpack.io/#swapnil1104/OtpEditText)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-OtpEditText-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7666)
 
 A customised EditText view serving the purpose of taking numeric **One Time Password** from a user. 
 With stunning animation, and high customizability.
 
-![Demo1](images/demo.gif)
-![Demo with other colors](images/demo1.gif)
+![Demo with underline](images/demo2.gif)
 
 ## Packed with features
 - Add custom character limit.
@@ -28,7 +28,7 @@ Step 2. Add the dependency
 
 ```
 dependencies {
-    implementation 'com.github.swapnil1104:OtpEditText:0.0.1'
+    implementation 'com.github.swapnil1104:OtpEditText:{current_lib_ver}'
 }
 ```
 Step 3. Add OtpEditText to your layout file
@@ -71,6 +71,24 @@ To change that use,
 
 ```app:oev_secondary_color="@color/{your_color}"```
 
+###  Using multiple style options.
+There are 4 style options that are available within the library for now.
+- rounded box
+- square box
+- underline
+- rounded underline
+
+To use any of these styles, please add ```app:oev_box_style="@string\{box_style_input}"```
+attribue.
+I have provided string resources for simpler usage.
+```
+    <string name="style_square">square_box</string>
+    <string name="style_rounded">rounded_box</string>
+    <string name="style_underline">underline</string>
+    <string name="style_rounded_underline">rounded_underline</string>
+```
+Suppose you want the rounded underline option to be displayed. Then, please add:
+`app:oev_box_style="@string/style_rounded_underline" ` in the OtpEditText xml code.
 
 ## For optimum usage; Please note.
 * Specify `android:textSize` according to your needs.
