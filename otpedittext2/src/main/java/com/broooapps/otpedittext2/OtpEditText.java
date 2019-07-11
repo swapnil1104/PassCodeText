@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
+import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -27,6 +28,8 @@ public class OtpEditText extends AppCompatEditText {
     private Paint mLinesPaint;
     private Paint mStrokePaint;
 
+    private boolean mMaskInput;
+
     private int defStyleAttr = 0;
     private int mMaxLength = 6;
     private int mPrimaryColor;
@@ -41,6 +44,7 @@ public class OtpEditText extends AppCompatEditText {
     private float mLineSpacing = 10; //8dp by default, height of the text from our lines
 
     private String mBoxStyle;
+    private String mMaskCharacter = "*";
 
     private final String ROUNDED_BOX = "rounded_box";
     private final String UNDERLINE = "underline";
@@ -115,6 +119,12 @@ public class OtpEditText extends AppCompatEditText {
         mSecondaryColor = a.getColor(R.styleable.OtpEditText_oev_secondary_color, getResources().getColor(R.color.light_gray));
         mTextColor = a.getColor(R.styleable.OtpEditText_oev_text_color, getResources().getColor(android.R.color.black));
         mBoxStyle = a.getString(R.styleable.OtpEditText_oev_box_style);
+        mMaskInput = a.getBoolean(R.styleable.OtpEditText_oev_mask_input, false);
+        if (a.getString(R.styleable.OtpEditText_oev_mask_character) != null) {
+            mMaskCharacter = String.valueOf(a.getString(R.styleable.OtpEditText_oev_mask_character)).substring(0, 1);
+        } else {
+            mMaskCharacter = getContext().getString(R.string.mask_character);
+        }
 
         if (mBoxStyle != null && !mBoxStyle.isEmpty()) {
             switch (mBoxStyle) {
@@ -213,7 +223,11 @@ public class OtpEditText extends AppCompatEditText {
             }
             if (getText().length() > i) {
                 float middle = startX + mCharSize / 2;
-                canvas.drawText(text, i, i + 1, middle - textWidths[0] / 2, mLineSpacing, getPaint());
+                if (mMaskInput) {
+                    canvas.drawText(getMaskText(), i, i + 1, middle - textWidths[0] / 2, mLineSpacing, getPaint());
+                } else {
+                    canvas.drawText(text, i, i + 1, middle - textWidths[0] / 2, mLineSpacing, getPaint());
+                }
             }
 
             if (mSpace < 0) {
@@ -222,6 +236,15 @@ public class OtpEditText extends AppCompatEditText {
                 startX += mCharSize + mSpace;
             }
         }
+    }
+
+    private String getMaskText() {
+        int length = String.valueOf(getText()).length();
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            out.append(mMaskCharacter);
+        }
+        return out.toString();
     }
 
     /**

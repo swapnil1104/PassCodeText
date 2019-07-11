@@ -90,6 +90,22 @@ I have provided string resources for simpler usage.
 Suppose you want the rounded underline option to be displayed. Then, please add:
 `app:oev_box_style="@string/style_rounded_underline" ` in the OtpEditText xml code.
 
+### Masking input characters with Asterisk.
+Functionality to mask the input with any special character has been introduced. 
+To mask the input;
+```
+app:oev_mask_input="true" 
+```
+xml property must be introduced in the XML layout file.
+
+#### Masking with any other special character.
+To mask input with any character other than `*` you can do the following;
+```
+app:oev_mask_character="ø"
+```
+
+P.S. Please note that, in case of masking with a special character other than `*`, specify string with length one, otherwise the input string will be truncated to length 1.
+
 ## For optimum usage; Please note.
 * Specify `android:textSize` according to your needs.
 * Specify `android:padding` according to your needs, there are no paddings drawn by default.
