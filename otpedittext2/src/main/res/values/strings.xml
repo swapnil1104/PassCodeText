@@ -7,5 +7,6 @@
     <string name="style_rounded">rounded_box</string>
     <string name="style_underline">underline</string>
     <string name="style_rounded_underline">rounded_underline</string>
+    <string name="mask_character">\u2022</string>
 
 </resources>

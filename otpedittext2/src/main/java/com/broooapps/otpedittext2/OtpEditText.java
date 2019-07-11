@@ -122,6 +122,8 @@ public class OtpEditText extends AppCompatEditText {
         mMaskInput = a.getBoolean(R.styleable.OtpEditText_oev_mask_input, false);
         if (a.getString(R.styleable.OtpEditText_oev_mask_character) != null) {
             mMaskCharacter = String.valueOf(a.getString(R.styleable.OtpEditText_oev_mask_character)).substring(0, 1);
+        } else {
+            mMaskCharacter = getContext().getString(R.string.mask_character);
         }
 
         if (mBoxStyle != null && !mBoxStyle.isEmpty()) {
