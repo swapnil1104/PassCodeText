@@ -16,15 +16,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.broooapps.otpedittext2.OtpEditText
+        android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="false"
         android:cursorVisible="false"
         android:digits="0123456789"
-        android:inputType="number"
         android:maxLength="6"
         android:padding="32dp"
         android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:oev_mask_character="ø¥"
+        app:oev_mask_input="true" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:onClick="displayText"
+        android:layout_height="wrap_content"
+        android:text="Click me"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:id="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button" />
+
 
 </android.support.constraint.ConstraintLayout>

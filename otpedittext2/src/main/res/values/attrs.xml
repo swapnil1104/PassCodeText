@@ -7,6 +7,9 @@
         <attr name="oev_text_color" format="color" />
         <attr name="oev_box_style" format="string" />
 
+        <attr name="oev_mask_input" format="boolean" />
+        <attr name="oev_mask_character" format="string" />
+
     </declare-styleable>
 
 

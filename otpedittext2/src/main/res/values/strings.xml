@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">OtpEditText</string>
 
+
+    <!-- Different styles for input box. -->
     <string name="style_square">square_box</string>
     <string name="style_rounded">rounded_box</string>
     <string name="style_underline">underline</string>
