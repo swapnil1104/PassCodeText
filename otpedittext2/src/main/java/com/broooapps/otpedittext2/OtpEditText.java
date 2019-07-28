@@ -51,6 +51,8 @@ public class OtpEditText extends AppCompatEditText {
     private final String SQUARE_BOX = "square_box";
     private final String ROUNDED_UNDERLINE = "rounded_underline";
 
+    private OnCompleteListener completeListener;
+
     public OtpEditText(Context context) {
         super(context);
     }
@@ -228,6 +230,11 @@ public class OtpEditText extends AppCompatEditText {
                 } else {
                     canvas.drawText(text, i, i + 1, middle - textWidths[0] / 2, mLineSpacing, getPaint());
                 }
+                if (i + 1 == mNumChars) {
+                    if (completeListener != null) {
+                        completeListener.onComplete(String.valueOf(getText()));
+                    }
+                }
             }
 
             if (mSpace < 0) {
@@ -262,5 +269,9 @@ public class OtpEditText extends AppCompatEditText {
             mLinesPaint.setColor(ContextCompat.getColor(getContext(), android.R.color.white));
             mStrokePaint.setColor(mPrimaryColor);
         }
+    }
+
+    public void setOnCompleteListener(OnCompleteListener listener) {
+        completeListener = listener;
     }
 }

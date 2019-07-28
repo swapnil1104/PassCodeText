@@ -106,6 +106,20 @@ app:oev_mask_character="ø"
 
 P.S. Please note that, in case of masking with a special character other than `*`, specify string with length one, otherwise the input string will be truncated to length 1.
 
+### OnComplete callback for the View
+To implement an OnComplete callback, use `setOnCompleteListener` setter method and pass on an interface implementation.
+eg:
+```
+editText.setOnCompleteListener(new OnCompleteListener() {
+        @Override
+        public void onComplete(String value) {
+            Toast.makeText(MainActivity.this, "Completed " + value, Toast.LENGTH_SHORT).show();
+        }
+    });
+```
+
+This callback will be triggered when the number of characters is equal to the `android:maxLength` value.
+
 ## For optimum usage; Please note.
 * Specify `android:textSize` according to your needs.
 * Specify `android:padding` according to your needs, there are no paddings drawn by default.
