@@ -2,7 +2,7 @@ package com.broooapps.otpedittext2;
 
 /**
  * Created by Swapnil Tiwari on 2019-05-07.
- * swapnil.tiwari@box8.in
+ * swapniltiwari775@gmail.com
  */
 
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.graphics.Paint;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
-import android.text.method.PasswordTransformationMethod;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -20,7 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class OtpEditText extends AppCompatEditText {
+public class OtpEditText extends AppCompatEditText implements TextWatcher {
     public static final String XML_NAMESPACE_ANDROID = "http://schemas.android.com/apk/res/android";
 
     private OnClickListener mClickListener;
@@ -71,6 +71,9 @@ public class OtpEditText extends AppCompatEditText {
     private void init(Context context, AttributeSet attrs) {
 
         getAttrsFromTypedArray(attrs);
+
+        // Set the TextWatcher
+        this.addTextChangedListener(this);
 
         float multi = context.getResources().getDisplayMetrics().density;
         mLineStroke = multi * mLineStroke;
@@ -230,11 +233,6 @@ public class OtpEditText extends AppCompatEditText {
                 } else {
                     canvas.drawText(text, i, i + 1, middle - textWidths[0] / 2, mLineSpacing, getPaint());
                 }
-                if (i + 1 == mNumChars) {
-                    if (completeListener != null) {
-                        completeListener.onComplete(String.valueOf(getText()));
-                    }
-                }
             }
 
             if (mSpace < 0) {
@@ -273,5 +271,20 @@ public class OtpEditText extends AppCompatEditText {
 
     public void setOnCompleteListener(OnCompleteListener listener) {
         completeListener = listener;
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        if (s.length() == mNumChars) {
+            completeListener.onComplete(String.valueOf(s));
+        }
     }
 }
