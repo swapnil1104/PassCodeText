@@ -24,6 +24,7 @@
         android:digits="0123456789"
         android:maxLength="6"
         android:padding="32dp"
+        app:oev_text_color="#dd1212"
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent"
         app:oev_mask_character="ø¥"

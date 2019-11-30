@@ -15,6 +15,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.ActionMode;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
 
     private Paint mLinesPaint;
     private Paint mStrokePaint;
+    private Paint mTextPaint;
 
     private boolean mMaskInput;
 
@@ -71,6 +73,9 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
     private void init(Context context, AttributeSet attrs) {
 
         getAttrsFromTypedArray(attrs);
+
+        mTextPaint = getPaint();
+        mTextPaint.setColor(mTextColor);
 
         // Set the TextWatcher
         this.addTextChangedListener(this);
@@ -119,7 +124,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
     private void getAttrsFromTypedArray(AttributeSet attributeSet) {
         final TypedArray a = getContext().obtainStyledAttributes(attributeSet, R.styleable.OtpEditText, defStyleAttr, 0);
 
-        mMaxLength = attributeSet.getAttributeIntValue(XML_NAMESPACE_ANDROID, "maxLength", 4);
+        mMaxLength = attributeSet.getAttributeIntValue(XML_NAMESPACE_ANDROID, "maxLength", 6);
         mPrimaryColor = a.getColor(R.styleable.OtpEditText_oev_primary_color, getResources().getColor(android.R.color.holo_red_dark));
         mSecondaryColor = a.getColor(R.styleable.OtpEditText_oev_secondary_color, getResources().getColor(R.color.light_gray));
         mTextColor = a.getColor(R.styleable.OtpEditText_oev_text_color, getResources().getColor(android.R.color.black));
