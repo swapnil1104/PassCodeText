@@ -38,7 +38,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
     private int mTextColor;
 
     private float mLineStrokeSelected = 2; //2dp by default
-    private float mLineStroke = 20; //1dp by default
+    private float mLineStroke = 1; //1dp by default
     private float mSpace = 8; //24 dp by default, space between the lines
     private float mCharSize;
     private float mNumChars = 6;
@@ -83,7 +83,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
         mLineStrokeSelected = multi * mLineStrokeSelected;
 
         mLinesPaint = new Paint(getPaint());
-        mLinesPaint.setStrokeWidth(20);
+        mLinesPaint.setStrokeWidth(mLineStroke);
 
         setBackgroundResource(0);
         mSpace = multi * mSpace; //convert to pixels for our density
