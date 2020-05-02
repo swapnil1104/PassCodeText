@@ -38,7 +38,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
     private int mTextColor;
 
     private float mLineStrokeSelected = 2; //2dp by default
-    private float mLineStroke = 1; //1dp by default
+    private float mLineStroke = 20; //1dp by default
     private float mSpace = 8; //24 dp by default, space between the lines
     private float mCharSize;
     private float mNumChars = 6;
@@ -78,13 +78,12 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
 
         // Set the TextWatcher
         this.addTextChangedListener(this);
-
         float multi = context.getResources().getDisplayMetrics().density;
         mLineStroke = multi * mLineStroke;
         mLineStrokeSelected = multi * mLineStrokeSelected;
 
         mLinesPaint = new Paint(getPaint());
-        mLinesPaint.setStrokeWidth(mLineStroke);
+        mLinesPaint.setStrokeWidth(20);
 
         setBackgroundResource(0);
         mSpace = multi * mSpace; //convert to pixels for our density
@@ -140,27 +139,27 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
                 case UNDERLINE:
                 case ROUNDED_UNDERLINE:
                     mStrokePaint = new Paint(getPaint());
-                    mStrokePaint.setStrokeWidth(4);
+                    mStrokePaint.setStrokeWidth(8);
                     mStrokePaint.setStyle(Paint.Style.FILL);
                     break;
 
                 case SQUARE_BOX:
                 case ROUNDED_BOX:
                     mStrokePaint = new Paint(getPaint());
-                    mStrokePaint.setStrokeWidth(4);
+                    mStrokePaint.setStrokeWidth(8);
                     mStrokePaint.setStyle(Paint.Style.STROKE);
                     break;
 
                 default:
                     mStrokePaint = new Paint(getPaint());
-                    mStrokePaint.setStrokeWidth(4);
+                    mStrokePaint.setStrokeWidth(8);
                     mStrokePaint.setStyle(Paint.Style.FILL);
 
                     mBoxStyle = UNDERLINE;
             }
         } else {
             mStrokePaint = new Paint(getPaint());
-            mStrokePaint.setStrokeWidth(4);
+            mStrokePaint.setStrokeWidth(8);
             mStrokePaint.setStyle(Paint.Style.FILL);
 
             mBoxStyle = UNDERLINE;

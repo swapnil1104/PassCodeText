@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#444444"
     tools:context=".MainActivity">
 
     <TextView
@@ -26,14 +27,18 @@
         android:padding="32dp"
         app:oev_text_color="#dd1212"
         android:textSize="30sp"
+        app:oev_primary_color="#CCFF00"
+        app:oev_box_style="@string/style_rounded_underline"
+        app:oev_secondary_color="#DADADA"
         app:layout_constraintTop_toTopOf="parent"
-        app:oev_mask_character="ø¥"
+        app:oev_mask_character="*"
         app:oev_mask_input="true" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:onClick="displayText"
         android:text="Click me"
         app:layout_constraintEnd_toEndOf="parent"
