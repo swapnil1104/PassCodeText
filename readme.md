@@ -8,6 +8,7 @@ A customised EditText view serving the purpose of taking numeric **One Time Pass
 With stunning animation, and high customizability.
 
 ![Demo with underline](images/demo2.gif)
+![Dark theme demo](images/dark_theme_demo.gif)
 
 ## Packed with features
 - Add custom character limit.

@@ -78,7 +78,6 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
 
         // Set the TextWatcher
         this.addTextChangedListener(this);
-
         float multi = context.getResources().getDisplayMetrics().density;
         mLineStroke = multi * mLineStroke;
         mLineStrokeSelected = multi * mLineStrokeSelected;
@@ -140,27 +139,27 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
                 case UNDERLINE:
                 case ROUNDED_UNDERLINE:
                     mStrokePaint = new Paint(getPaint());
-                    mStrokePaint.setStrokeWidth(4);
+                    mStrokePaint.setStrokeWidth(8);
                     mStrokePaint.setStyle(Paint.Style.FILL);
                     break;
 
                 case SQUARE_BOX:
                 case ROUNDED_BOX:
                     mStrokePaint = new Paint(getPaint());
-                    mStrokePaint.setStrokeWidth(4);
+                    mStrokePaint.setStrokeWidth(8);
                     mStrokePaint.setStyle(Paint.Style.STROKE);
                     break;
 
                 default:
                     mStrokePaint = new Paint(getPaint());
-                    mStrokePaint.setStrokeWidth(4);
+                    mStrokePaint.setStrokeWidth(8);
                     mStrokePaint.setStyle(Paint.Style.FILL);
 
                     mBoxStyle = UNDERLINE;
             }
         } else {
             mStrokePaint = new Paint(getPaint());
-            mStrokePaint.setStrokeWidth(4);
+            mStrokePaint.setStrokeWidth(8);
             mStrokePaint.setStyle(Paint.Style.FILL);
 
             mBoxStyle = UNDERLINE;
