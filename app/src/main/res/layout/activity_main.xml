@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#444444"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Please enter the OTP"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.broooapps.otpedittext2.OtpEditText
-        android:id="@+id/top"
+        android:id="@+id/oev_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="false"
@@ -25,34 +25,35 @@
         android:digits="0123456789"
         android:maxLength="6"
         android:padding="32dp"
-        app:oev_text_color="#dd1212"
+        android:hint="hi"
         android:textSize="30sp"
-        app:oev_primary_color="#CCFF00"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:oev_box_style="@string/style_rounded_underline"
-        app:oev_secondary_color="#DADADA"
-        app:layout_constraintTop_toTopOf="parent"
         app:oev_mask_character="*"
-        app:oev_mask_input="true" />
+        app:oev_mask_input="true"
+        app:oev_primary_color="#CCFF00"
+        app:oev_secondary_color="#DADADA"
+        app:oev_text_color="#dd1212"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:onClick="displayText"
-        android:text="Click me"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top" />
-
-    <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:onClick="displayText"
+        android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button" />
+        app:layout_constraintTop_toBottomOf="@id/oev_view" />
 
+    <TextView
+        android:id="@+id/text_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/oev_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
