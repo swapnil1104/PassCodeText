@@ -9,6 +9,7 @@ With stunning animation, and high customizability.
 
 ![Demo with underline](images/demo2.gif)
 ![Dark theme demo](images/dark_theme_demo.gif)
+![Error animation](images/err_anim.gif)
 
 ## Packed with features
 - Add custom character limit.
@@ -50,6 +51,18 @@ Step 3. Add OtpEditText to your layout file
     app:oev_secondary_color="@color/light_gray"
     />
 ```
+
+## Usage
+
+### GetOtpValue() method usage
+```
+String otpValue = otpEditText.getOtpValue();
+if (otpValue != null) {
+    textDisplay.setText("Entered Value: " + otpEditText.getOtpValue());
+}
+```
+This method when invoked, will either return the OTP value, in case this is invoked before the user inputs the desired length of characters, a shake animation will be triggered implicitly.
+
 
 ## How to customize the view.
 ### Setting desired length for the OTP(One time password code)

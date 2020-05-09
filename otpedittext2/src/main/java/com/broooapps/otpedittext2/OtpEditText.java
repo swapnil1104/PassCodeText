@@ -4,11 +4,12 @@ package com.broooapps.otpedittext2;
  * Created by Swapnil Tiwari on 2019-05-07.
  * swapniltiwari775@gmail.com
  */
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.AppCompatEditText;
 import android.text.Editable;
@@ -18,12 +19,12 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import android.view.animation.AnimationUtils;
 
 public class OtpEditText extends AppCompatEditText implements TextWatcher {
     public static final String XML_NAMESPACE_ANDROID = "http://schemas.android.com/apk/res/android";
 
-    private OnClickListener mClickListener;
+    private View.OnClickListener mClickListener;
 
     private Paint mLinesPaint;
     private Paint mStrokePaint;
@@ -69,9 +70,11 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
         init(context, attrs);
     }
 
-    private void init(Context context, AttributeSet attrs) {
+    private void init(Context context, @Nullable AttributeSet attrs) {
 
-        getAttrsFromTypedArray(attrs);
+        if (attrs != null) {
+            getAttrsFromTypedArray(attrs);
+        }
 
         mTextPaint = getPaint();
         mTextPaint.setColor(mTextColor);
@@ -168,9 +171,14 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
         a.recycle();
     }
 
-    @Override
-    public void setOnClickListener(OnClickListener l) {
-        mClickListener = l;
+    @Nullable
+    public String getOtpValue() {
+        if (String.valueOf(getText()).length() != mMaxLength) {
+            this.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.shake));
+            return null;
+        } else {
+            return String.valueOf(getText());
+        }
     }
 
     @Override
@@ -272,9 +280,6 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
         }
     }
 
-    public void setOnCompleteListener(OnCompleteListener listener) {
-        completeListener = listener;
-    }
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -289,5 +294,15 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
         if (s.length() == mNumChars) {
             completeListener.onComplete(String.valueOf(s));
         }
+    }
+
+
+    @Override
+    public void setOnClickListener(OnClickListener l) {
+        mClickListener = l;
+    }
+
+    public void setOnCompleteListener(OnCompleteListener listener) {
+        completeListener = listener;
     }
 }
