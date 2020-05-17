@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public void displayText(View view) {
         String otpValue = otpEditText.getOtpValue();
         if (otpValue != null) {
+            otpEditText.triggerErrorAnimation();
             textDisplay.setText("Entered Value: " + otpEditText.getOtpValue());
         }
     }

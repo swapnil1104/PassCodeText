@@ -10,12 +10,15 @@ With stunning animation, and high customizability.
 ![Demo with underline](images/demo2.gif)
 ![Dark theme demo](images/dark_theme_demo.gif)
 ![Error animation](images/err_anim.gif)
+![Hint usage](images/hint.gif)
 
 ## Packed with features
+
 - Add custom character limit.
+- Animation supported on wrong input
 - Use your own color scheme.
 - Do not allow user changing cursor position for smooth functioning.
-
+- Hint is supported!
 
 ## How to integrate the library in your app?
 Step 1: Add it in your root build.gradle at the end of repositories:
@@ -65,6 +68,18 @@ This method when invoked, will either return the OTP value, in case this is invo
 
 
 ## How to customize the view.
+
+### Trigger Error Animation
+To trigger error animation for incorrect input, or any other use case, use.
+```
+OtpEditText otpEditText;
+....
+otpEditText = findViewById(R.id.oev_view);
+....
+//Invalid input, animation triggered
+otpEditText.triggerErrorAnimation();
+```
+
 ### Setting desired length for the OTP(One time password code)
 
 To set custom length of the OtpEditText, use 
