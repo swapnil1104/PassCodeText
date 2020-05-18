@@ -4,14 +4,17 @@ package com.broooapps.otpedittext2;
  * Created by Swapnil Tiwari on 2019-05-07.
  * swapniltiwari775@gmail.com
  */
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.AppCompatEditText;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -29,6 +32,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
     private Paint mLinesPaint;
     private Paint mStrokePaint;
     private Paint mTextPaint;
+    private Paint mHintPaint;
 
     private boolean mMaskInput;
 
@@ -37,6 +41,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
     private int mPrimaryColor;
     private int mSecondaryColor;
     private int mTextColor;
+    private int mHintTextColor;
 
     private float mLineStrokeSelected = 2; //2dp by default
     private float mLineStroke = 1; //1dp by default
@@ -47,11 +52,15 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
 
     private String mBoxStyle;
     private String mMaskCharacter = "*";
+    private String mHintText = "";
 
     private final String ROUNDED_BOX = "rounded_box";
     private final String UNDERLINE = "underline";
     private final String SQUARE_BOX = "square_box";
     private final String ROUNDED_UNDERLINE = "rounded_underline";
+
+    float[] textWidths;
+    float[] hintWidth = new float[1];
 
     private OnCompleteListener completeListener;
 
@@ -78,6 +87,9 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
 
         mTextPaint = getPaint();
         mTextPaint.setColor(mTextColor);
+
+        mHintPaint = new Paint(getPaint());
+        mHintPaint.setColor(mHintTextColor);
 
         // Set the TextWatcher
         this.addTextChangedListener(this);
@@ -126,6 +138,8 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
         final TypedArray a = getContext().obtainStyledAttributes(attributeSet, R.styleable.OtpEditText, defStyleAttr, 0);
 
         mMaxLength = attributeSet.getAttributeIntValue(XML_NAMESPACE_ANDROID, "maxLength", 6);
+        mHintText = attributeSet.getAttributeValue(XML_NAMESPACE_ANDROID, "hint");
+        mHintTextColor = attributeSet.getAttributeIntValue(XML_NAMESPACE_ANDROID, "textColorHint", getResources().getColor(R.color.hint_color));
         mPrimaryColor = a.getColor(R.styleable.OtpEditText_oev_primary_color, getResources().getColor(android.R.color.holo_red_dark));
         mSecondaryColor = a.getColor(R.styleable.OtpEditText_oev_secondary_color, getResources().getColor(R.color.light_gray));
         mTextColor = a.getColor(R.styleable.OtpEditText_oev_text_color, getResources().getColor(android.R.color.black));
@@ -174,11 +188,15 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
     @Nullable
     public String getOtpValue() {
         if (String.valueOf(getText()).length() != mMaxLength) {
-            this.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.shake));
+            triggerErrorAnimation();
             return null;
         } else {
             return String.valueOf(getText());
         }
+    }
+
+    public void triggerErrorAnimation() {
+        this.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.shake));
     }
 
     @Override
@@ -198,13 +216,32 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
         mLineSpacing = (float) (getHeight() * .6);
 
         int startX = getPaddingLeft();
+        int hintStartX = getPaddingLeft();
         int bottom = getHeight() - getPaddingBottom();
         int top = getPaddingTop();
 
         //Text Width
         Editable text = getText();
+
+
         int textLength = text.length();
-        float[] textWidths = new float[textLength];
+        textWidths = new float[textLength];
+
+
+        if (text.length() == 0 && !mHintText.isEmpty()) {
+            getPaint().getTextWidths("1", 0, 1, hintWidth);
+            for (int i = 0; i < mNumChars && i < mHintText.length(); i++) {
+                float middle = hintStartX + mCharSize / 2;
+                canvas.drawText(mHintText, i, i + 1, middle - hintWidth[0] / 2, mLineSpacing, mHintPaint);
+
+                if (mSpace < 0) {
+                    hintStartX += mCharSize * 2;
+                } else {
+                    hintStartX += mCharSize + mSpace;
+                }
+            }
+        }
+
         getPaint().getTextWidths(getText(), 0, textLength, textWidths);
 
         for (int i = 0; i < mNumChars; i++) {
@@ -240,9 +277,9 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
             if (getText().length() > i) {
                 float middle = startX + mCharSize / 2;
                 if (mMaskInput) {
-                    canvas.drawText(getMaskText(), i, i + 1, middle - textWidths[0] / 2, mLineSpacing, getPaint());
+                    canvas.drawText(getMaskText(), i, i + 1, middle - textWidths[0] / 2, mLineSpacing, mTextPaint);
                 } else {
-                    canvas.drawText(text, i, i + 1, middle - textWidths[0] / 2, mLineSpacing, getPaint());
+                    canvas.drawText(text, i, i + 1, middle - textWidths[0] / 2, mLineSpacing, mTextPaint);
                 }
             }
 
@@ -251,6 +288,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
             } else {
                 startX += mCharSize + mSpace;
             }
+
         }
     }
 
