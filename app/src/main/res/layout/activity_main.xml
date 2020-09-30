@@ -25,7 +25,6 @@
         android:digits="0123456789"
         android:maxLength="6"
         android:padding="32dp"
-        android:hint="126786786"
         android:textSize="30sp"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:oev_box_style="@string/style_rounded_underline"
