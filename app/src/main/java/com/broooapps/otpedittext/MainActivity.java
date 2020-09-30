@@ -21,9 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         otpEditText = findViewById(R.id.oev_view);
-
         textDisplay = findViewById(R.id.text_display);
-
 
         otpEditText.setOnCompleteListener(new OnCompleteListener() {
             @SuppressLint("SetTextI18n")
@@ -32,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
                 textDisplay.setText("Entered Value: " + value);
             }
         });
-
-
     }
 
     public void displayText(View view) {

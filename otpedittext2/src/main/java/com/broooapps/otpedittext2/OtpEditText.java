@@ -228,7 +228,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
         textWidths = new float[textLength];
 
 
-        if (text.length() == 0 && !mHintText.isEmpty()) {
+        if (text.length() == 0 && mHintText != null && !mHintText.isEmpty()) {
             getPaint().getTextWidths("1", 0, 1, hintWidth);
             for (int i = 0; i < mNumChars && i < mHintText.length(); i++) {
                 float middle = hintStartX + mCharSize / 2;
