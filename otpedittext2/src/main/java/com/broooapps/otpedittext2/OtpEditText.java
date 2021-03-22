@@ -198,7 +198,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
     }
 
     @NonNull
-    public int getNumCharsMax() {
+    public int getMaxCharLength() {
         return (int)mNumChars;
     }
 

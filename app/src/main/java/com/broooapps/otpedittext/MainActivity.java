@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onChange(String value) {
-                submitButton.setEnabled(value.length() == otpEditText.getNumCharsMax());
+                submitButton.setEnabled(value.length() == otpEditText.getMaxCharLength());
                 Log.v("PassCodeSample", "Entered Value: " + value);
             }
         });
