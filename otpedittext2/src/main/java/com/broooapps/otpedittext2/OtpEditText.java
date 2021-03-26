@@ -11,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -63,6 +64,7 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
     float[] hintWidth = new float[1];
 
     private OnCompleteListener completeListener;
+    private OnChangeListener changeListener;
 
     public OtpEditText(Context context) {
         super(context);
@@ -194,6 +196,12 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
             return String.valueOf(getText());
         }
     }
+
+    @NonNull
+    public int getMaxCharLength() {
+        return (int)mNumChars;
+    }
+
 
     public void triggerErrorAnimation() {
         this.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.shake));
@@ -329,11 +337,14 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable s) {
-        if (s.length() == mNumChars) {
+        if (changeListener != null) {
+            changeListener.onChange(String.valueOf(s));
+        }
+
+        if (s.length() == mNumChars && completeListener != null) {
             completeListener.onComplete(String.valueOf(s));
         }
     }
-
 
     @Override
     public void setOnClickListener(OnClickListener l) {
@@ -342,5 +353,9 @@ public class OtpEditText extends AppCompatEditText implements TextWatcher {
 
     public void setOnCompleteListener(OnCompleteListener listener) {
         completeListener = listener;
+    }
+
+    public void setOnChangeListener(OnChangeListener listener) {
+        changeListener = listener;
     }
 }
